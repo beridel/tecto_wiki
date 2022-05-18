@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/bash 
+#SBATCH -n 4 #Request 4 tasks (cores)
+#SBATCH -N 1 #Request 1 node
+#SBATCH -t 0-00:30 #Request runtime of 30 minutes
+#SBATCH -psched_mit_erl #Run on sched_mit_erl partition
+#SBATCH --mem=MaxMemPerMode #Request max memory per Mode
+#SBATCH -o output_%j.txt #redirect output to output_JOBID.txt
+#SBATCH -e error_%j.txt #redirect errors to error_JOBID.txt
+#SBATCH --mail-type=BEGIN,END, FAIL #Send email when job starts, ends and fail
+#SBATCH --mail-user=mouchonc@mit.edu #email recipient
 
-#SBATCH -psched_mit_erl
-#SBATCH --exclusive
-#SBATCH --mem=MaxMemPerMode
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=mouchonc@mit.edu
-#SBATCH --array=1-37%4
-
-VAR1=$(head -n $SLURM_ARRAY_TASK_ID sta_list.txt | tail -n 1)
-
-bash code.sh $VAR1
+echo "Hello World"
